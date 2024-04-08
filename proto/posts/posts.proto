@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package posts;
+
+option go_package = "tiny-social-network.posts.v1;postsv1";
+
+service Posts {
+  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
+  rpc UpdatePost(UpdatePostRequest) returns (UpdatePostResponse);
+  rpc DeletePost(DeletePostRequest) returns (DeletePostResponse);
+  rpc GetPost(GetPostRequest) returns (GetPostResponse);
+  rpc ListPosts(ListPostsRequest) returns (ListPostsResponse);
+}
+
+message Post {
+  int64 owner_id = 1;
+  int64 post_id = 2;
+  string content = 3;
+}
+
+message CreatePostRequest {
+  int64 user_id = 1;
+  string content = 2;
+}
+
+message CreatePostResponse { int64 created_post_id = 1; }
+
+message UpdatePostRequest {
+  int64 post_id = 1;
+  int64 user_id = 2;
+  string content = 3;
+}
+
+message UpdatePostResponse { int32 status = 1; }
+
+message DeletePostRequest {
+  int64 post_id = 1;
+  int64 user_id = 2;
+}
+
+message DeletePostResponse { int32 status = 1; }
+
+message GetPostRequest { int64 post_id = 1; }
+
+message GetPostResponse {
+  int32 status = 1;
+  optional Post post = 2;
+}
+
+message ListPostsRequest {
+  int32 page = 1;
+  int32 posts_per_page = 2;
+}
+
+message ListPostsResponse {
+  repeated Post posts = 1;
+  int32 page = 2;
+  int32 total_posts = 3;
+}

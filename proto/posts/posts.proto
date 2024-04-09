@@ -48,12 +48,12 @@ message GetPostResponse {
 }
 
 message ListPostsRequest {
-  int32 page = 1;
-  int32 posts_per_page = 2;
+  int64 page = 1;
+  int64 posts_per_page = 2;
 }
 
 message ListPostsResponse {
   repeated Post posts = 1;
-  int32 page = 2;
-  int32 total_posts = 3;
+  int64 page = 2;
+  int64 total_posts = 3;
 }

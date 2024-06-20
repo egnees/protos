@@ -3,9 +3,16 @@
 version: "3"
 
 tasks:
-  generate:
+  generate-posts:
     aliases:
-      - gen
-    desc: "Generate go code from proto files"
+      - gen-posts
+    desc: "Generate go code from proto post files"
     cmds:
       - protoc -I proto proto/posts/*.proto --go_out=./gen/go/ --go_opt=paths=source_relative --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative
+
+  generate-stats:
+    aliases:
+      - gen-stats
+    desc: "Generate go code from proto stat files"
+    cmds:
+      - protoc -I proto proto/stats/*.proto --go_out=./gen/go/ --go_opt=paths=source_relative --go-grpc_out=./gen/go/ --go-grpc_opt=paths=source_relative
